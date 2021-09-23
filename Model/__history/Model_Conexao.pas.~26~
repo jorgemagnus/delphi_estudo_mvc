@@ -1,0 +1,48 @@
+unit Model_Conexao;
+{Responsável pela conexão com o banco de dados}
+
+interface
+
+uses
+  FireDAC.Comp.Client, FireDAC.Stan.Def, FireDAC.Phys.FB,FireDAC.Stan.Error,
+  FireDAC.Stan.Async, FireDAC.VCLUI.Wait, FireDAC.DApt, data.DB, Dialogs;
+
+function AtivarConecao(StatusConexao:integer):Boolean;
+
+
+implementation
+
+uses Model_Conexao_Parametros,System.SysUtils, UDataModel;
+
+function AtivarConecao(StatusConexao:integer):Boolean;
+begin
+    Result:=false;
+
+    try
+      case StatusConexao of
+        1:begin
+           //Ativar conexão com o banco de dados.
+          DataModel.DBConexao.Params.Values['Database']   :=FDataBase;
+          DataModel.DBConexao.Params.Values['Server']     :=FHostName;
+          DataModel.DBConexao.Params.Values['User_Name']  :=FUserName;
+          DataModel.DBConexao.Params.Values['Password']   :=FPassword;
+          DataModel.DBConexao.Params.Values['Port']       :=FPort;
+          DataModel.DbMySQLLink.VendorLib                 :=FVendorLib;
+          DataModel.DBConexao.Connected                   :=True;
+          Result                                          :=true;
+        end;
+        2:begin
+           DataModel.DBConexao.Connected := false;
+           Result := false;
+        end;
+      end;
+    Except
+       on E: EDatabaseError do
+           begin
+		        ShowMessage(E.Message+' - VERIFIQUE SUA CONEXÃO COM O BANCO DE DADOS!. (ver Função AtivarConexao em Model_Conexao');
+            abort;
+           end;
+    end;
+end;
+
+end.

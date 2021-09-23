@@ -1,0 +1,66 @@
+unit Model_Conexao_Parametros;
+{}
+
+interface
+
+type
+  TParametrosConexao = class
+  private
+    FPassword: string;
+    FDatabase: string;
+    FUserName: string;
+    FPort: string;
+    FHostName: string;
+    FArquivoConfiguracao: string;
+    FDialect: string;
+    procedure procCarregarParametros;
+
+  protected
+
+  public
+    constructor Create(ACaminhoArquivoConfiguracao: string);
+    property HostName: string read FHostName write FHostName;
+    property Port: string read FPort write FPort;
+    property Database: string read FDatabase write FDatabase;
+    property UserName: string read FUserName write FUserName;
+    property Password: string read FPassword write FPassword;
+    property Dialect: string read FDialect write FDialect;
+
+  published
+  end;
+
+implementation
+
+uses
+  StrUtils, SysUtils, Funcoes_Gerais;
+
+{ TParametrosConexao }
+
+procedure TParametrosConexao.procCarregarParametros;
+var
+  strSessao: String;
+begin
+  Dialect := '3';
+
+  strSessao := 'conexao';
+
+  Database := LerArquivoIni(strSessao, 'Database','');
+  HostName := LerArquivoIni(strSessao, 'HostName','');
+  UserName := LerArquivoIni(strSessao, 'UserName','');
+  Password := LerArquivoIni(strSessao, 'Password','');
+  Port     := LerArquivoIni(strSessao, 'Password','');
+
+  HostName := IfThen(HostName <> EmptyStr, HostName, '127.0.0.1');
+  UserName := IfThen(UserName <> EmptyStr, UserName, 'SYSDBA');
+  Password := IfThen(Password <> EmptyStr, Password, 'masterkey');
+  Port := IfThen(Port <> EmptyStr, Port, '3050');
+end;
+
+constructor TParametrosConexao.Create(ACaminhoArquivoConfiguracao: string);
+begin
+  inherited Create;
+  FArquivoConfiguracao := ACaminhoArquivoConfiguracao;
+  procCarregarParametros;
+end;
+
+end.

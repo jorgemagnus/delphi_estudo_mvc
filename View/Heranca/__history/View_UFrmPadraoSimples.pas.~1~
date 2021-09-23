@@ -1,0 +1,25 @@
+unit View_UFrmPadraoSimples;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls;
+
+type
+  TView_FrmPadraoSimples = class(TForm)
+    BarraStatusPadrao: TStatusBar;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  View_FrmPadraoSimples: TView_FrmPadraoSimples;
+
+implementation
+
+{$R *.dfm}
+
+end.

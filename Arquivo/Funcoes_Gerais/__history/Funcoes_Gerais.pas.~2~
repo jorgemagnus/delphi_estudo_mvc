@@ -1,0 +1,21 @@
+unit Funcoes_Gerais;
+
+interface
+
+uses DateUtils, IniFiles, StrUtils, SysUtils;
+
+//BLOCO FUNÇÕES
+Function  LerArquivoIni(NomedaSessao,ValorDaSessao,Variavel:string):string;
+
+implementation
+
+Function  LerArquivoIni(NomedaSessao,ValorDaSessao,Variavel:string):string;
+Var ArquivoIni:TIniFile;
+begin
+  //Função responsável por ler um arquivo ini.
+  ArquivoIni:=TIniFile.Create('C:\Windows\System32\config\Config.ini');
+  Result:=ArquivoIni.ReadString(NomedaSessao,ValorDaSessao,Variavel);
+  ArquivoIni.Free;
+end;
+
+end.

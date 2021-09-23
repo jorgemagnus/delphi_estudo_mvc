@@ -1,0 +1,24 @@
+unit Funcoes_Gerais;
+
+interface
+
+uses DateUtils, IniFiles, StrUtils, SysUtils, Dialogs;
+
+//BLOCO FUNÇÕES
+Function  LerArquivoIni(NomedaSessao,ValorDaSessao,Variavel:string):string;
+
+implementation
+
+Function  LerArquivoIni(NomedaSessao,ValorDaSessao,Variavel:string):string;
+Var ArquivoIni:TIniFile;
+    CaminhoArquivo:string;
+begin
+  //Verifico Primeiro se tem o arquivo.
+  CaminhoArquivo:= 'C:\Projetos\DELPHI\Aplicativo\Arquivo\INI\Config.ini';
+  //caso positivo leio seus dados.
+  ArquivoIni:=TIniFile.Create(CaminhoArquivo);
+  Result:=ArquivoIni.ReadString(NomedaSessao,ValorDaSessao,Variavel);
+  ArquivoIni.Free;
+end;
+
+end.

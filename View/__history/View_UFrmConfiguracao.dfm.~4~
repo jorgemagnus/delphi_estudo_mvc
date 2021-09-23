@@ -1,0 +1,67 @@
+inherited View_FrmConfiguracao: TView_FrmConfiguracao
+  BorderIcons = [biSystemMenu]
+  Caption = 'APLICATIVO - Configura'#231#245'es do Sistema.'
+  ClientHeight = 497
+  ClientWidth = 769
+  ExplicitWidth = 775
+  ExplicitHeight = 526
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited BarraStatusPadrao: TStatusBar
+    Top = 478
+    Width = 769
+    ExplicitTop = 478
+    ExplicitWidth = 769
+  end
+  object GbConfiguracao: TGroupBox
+    Left = 0
+    Top = 0
+    Width = 769
+    Height = 478
+    Align = alClient
+    Caption = 'CONFIGURA'#199#213'ES:'
+    TabOrder = 1
+    ExplicitLeft = 16
+    ExplicitTop = 17
+    ExplicitWidth = 737
+    ExplicitHeight = 449
+    object Label1: TLabel
+      Left = 16
+      Top = 32
+      Width = 135
+      Height = 13
+      Caption = 'Local Base Arquivo de Fotos'
+    end
+    object EdtLocalFoto: TEdit
+      Left = 16
+      Top = 48
+      Width = 617
+      Height = 21
+      TabOrder = 0
+      TextHint = 'Local onde ser'#225' armazenado o arquivo de fotos.'
+    end
+    object BtnLocalFoto: TButton
+      Left = 640
+      Top = 48
+      Width = 89
+      Height = 21
+      Caption = 'Local'
+      TabOrder = 1
+    end
+    object BtnGravar: TButton
+      Left = 640
+      Top = 440
+      Width = 89
+      Height = 25
+      Caption = 'Gravar'
+      TabOrder = 2
+    end
+  end
+  object SaveDialog1: TSaveDialog
+    FileName = 'foto.jpg'
+    Filter = 'Arquivos *.JPG|*.jpg'
+    InitialDir = 'c:\'
+    Left = 672
+    Top = 80
+  end
+end

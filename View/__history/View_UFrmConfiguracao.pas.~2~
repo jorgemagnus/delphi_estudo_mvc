@@ -1,0 +1,29 @@
+unit View_UFrmConfiguracao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, View_UFrmPadraoSimples, Vcl.ComCtrls,
+  Vcl.StdCtrls;
+
+type
+  TView_FrmConfiguracao = class(TView_FrmPadraoSimples)
+    GbConfiguracao: TGroupBox;
+    EdtLocalFoto: TEdit;
+    Label1: TLabel;
+    BtnLocalFoto: TButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  View_FrmConfiguracao: TView_FrmConfiguracao;
+
+implementation
+
+{$R *.dfm}
+
+end.

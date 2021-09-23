@@ -1,0 +1,32 @@
+object DataModel: TDataModel
+  OldCreateOrder = False
+  Height = 178
+  Width = 292
+  object DBConexao: TFDConnection
+    Params.Strings = (
+      'DriverID=MySQL')
+    LoginPrompt = False
+    Transaction = DBTransacao
+    Left = 40
+    Top = 24
+  end
+  object DBTransacao: TFDTransaction
+    Connection = DBConexao
+    Left = 40
+    Top = 80
+  end
+  object DbMySQLLink: TFDPhysMySQLDriverLink
+    Left = 136
+    Top = 24
+  end
+  object QTemp: TFDQuery
+    Connection = DBConexao
+    Left = 136
+    Top = 80
+  end
+  object Qtemp_: TFDQuery
+    Connection = DBConexao
+    Left = 192
+    Top = 80
+  end
+end

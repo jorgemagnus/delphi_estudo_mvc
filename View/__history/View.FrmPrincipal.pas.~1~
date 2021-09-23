@@ -1,0 +1,24 @@
+unit View.FrmPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+
+type
+  TView_FrmPrincipal = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  View_FrmPrincipal: TView_FrmPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+end.

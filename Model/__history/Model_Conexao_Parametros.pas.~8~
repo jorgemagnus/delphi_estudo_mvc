@@ -1,0 +1,34 @@
+unit Model_Conexao_Parametros;
+{Conexão do sistema com base nas configurações do arquivo INI.}
+
+interface
+ uses  Funcoes_Gerais;
+
+//Bloco Procedimentos
+procedure procCarregarParametros;
+
+
+implementation
+
+procedure procCarregarParametros;
+var
+  strSessao,
+  Database,
+  HostName,
+  UserName,
+  Password,
+  Port: String;
+begin
+
+  strSessao := 'conexao';
+
+  Database := LerArquivoIni(strSessao, 'Database','');
+  HostName := LerArquivoIni(strSessao, 'HostName','');
+  UserName := LerArquivoIni(strSessao, 'UserName','');
+  Password := LerArquivoIni(strSessao, 'Password','');
+  Port     := LerArquivoIni(strSessao, 'Password','');
+
+end;
+
+
+end.

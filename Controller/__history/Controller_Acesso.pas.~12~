@@ -1,0 +1,49 @@
+unit Controller_Acesso;
+//Unit de controle de acesso ao sistema pelo usuário.
+
+interface
+uses DateUtils, IniFiles, StrUtils, SysUtils, Dialogs;
+
+//funções
+function Controller_ValidarUsuarioStatus(Usuario:string):boolean;
+function Controller_ValidarUsuarioAcesso(Usuario,Senha:String):boolean;
+function Controller_EntradaUsuarioAcessoLogin(Usuario,Senha:String):integer;
+
+
+//procedimentos
+
+
+implementation
+
+uses Model_Acesso;
+
+
+function Controller_ValidarUsuarioStatus(Usuario:string):boolean;
+begin
+   Result:=true;
+   if (Model_ValidarUsuarioStatus(Usuario)=false) then
+      Result:=false;
+end;
+
+function Controller_ValidarUsuarioAcesso(Usuario,Senha:String):boolean;
+begin
+   Result:=false;
+   if (Model_ValidarUsuarioAcesso(Usuario,Senha)=true) then
+      Result:=true;
+end;
+
+function Controller_EntradaUsuarioAcessoLogin(Usuario,Senha:String):integer;
+begin
+   result:=0;
+
+   if (Usuario.IsEmpty) then
+       Result:=1;
+
+   if (Senha.IsEmpty) then
+       Result:=2;
+
+   if ((Usuario.IsEmpty) and (Senha.IsEmpty))  then
+       Result:=3;
+end;
+
+end.

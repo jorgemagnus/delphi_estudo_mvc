@@ -1,0 +1,41 @@
+unit Controller_Configuracao;
+////Unit de controle das configurações do sistema.
+
+interface
+uses DateUtils, IniFiles, StrUtils, SysUtils, Dialogs;
+
+//funções
+
+
+//procedimentos
+procedure Controller_GravarConfiguracao(id:integer;Configuracao:string;campo:integer);
+procedure Controller_PreencherCampos;
+
+
+implementation
+
+uses Model_Configuracao, Controller_Acesso;
+
+procedure Controller_GravarConfiguracao(id:integer;Configuracao:string;campo:integer);
+begin
+    case (campo) of
+     1:begin
+        if (Configuracao.IsEmpty) then
+            begin
+              ShowMessage('Obrigatório informar local para gravação das fotos!.');
+              abort;
+            end
+        else
+           Model_GravarConfiguracao(id,Configuracao,campo)
+       end;
+    end;
+end;
+
+procedure Controller_PreencherCampos;
+begin
+  //preencher tela.
+  Model_PreencherCampos(1);
+end;
+
+
+end.

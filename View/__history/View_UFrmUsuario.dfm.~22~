@@ -1,0 +1,180 @@
+inherited View_FrmUsuario: TView_FrmUsuario
+  ActiveControl = EdtUsuario
+  Caption = 'APLICATIVO - Controle de Usu'#225'rio.'
+  ClientHeight = 481
+  ClientWidth = 781
+  ExplicitWidth = 787
+  ExplicitHeight = 510
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited BarraStatusPadrao: TStatusBar
+    Top = 462
+    Width = 781
+    ExplicitTop = 462
+    ExplicitWidth = 781
+  end
+  object GBDadosUsuario: TGroupBox
+    Left = 0
+    Top = 0
+    Width = 781
+    Height = 193
+    Align = alTop
+    Caption = 'Dados do Usu'#225'rio'
+    TabOrder = 1
+    object Label1: TLabel
+      Left = 54
+      Top = 48
+      Width = 40
+      Height = 13
+      Caption = 'Usu'#225'rio:'
+    end
+    object Label2: TLabel
+      Left = 60
+      Top = 74
+      Width = 34
+      Height = 13
+      Caption = 'Senha:'
+    end
+    object Label3: TLabel
+      Left = 22
+      Top = 102
+      Width = 72
+      Height = 13
+      Caption = 'Repetir Senha:'
+    end
+    object Label4: TLabel
+      Left = 18
+      Top = 21
+      Width = 76
+      Height = 13
+      Caption = 'C'#243'digo Usu'#225'rio:'
+    end
+    object EdtUsuario: TEdit
+      Left = 100
+      Top = 40
+      Width = 163
+      Height = 21
+      MaxLength = 20
+      TabOrder = 0
+    end
+    object EdtSenha: TEdit
+      Left = 100
+      Top = 67
+      Width = 163
+      Height = 21
+      MaxLength = 10
+      PasswordChar = '*'
+      TabOrder = 1
+    end
+    object EdtRepetiSenha: TEdit
+      Left = 100
+      Top = 94
+      Width = 163
+      Height = 21
+      MaxLength = 10
+      PasswordChar = '*'
+      TabOrder = 2
+    end
+    object GBAtivoInativo: TGroupBox
+      Left = 280
+      Top = 40
+      Width = 185
+      Height = 75
+      Caption = 'Marca Usu'#225'rio Ativo/Inativo'
+      TabOrder = 3
+      object RBAtivo: TRadioButton
+        Tag = 1
+        Left = 47
+        Top = 21
+        Width = 72
+        Height = 17
+        Caption = 'Ativo'
+        TabOrder = 0
+      end
+      object RBInativo: TRadioButton
+        Left = 47
+        Top = 49
+        Width = 63
+        Height = 17
+        Caption = 'Inativo'
+        TabOrder = 1
+      end
+    end
+    object BtnGravar: TButton
+      Left = 591
+      Top = 150
+      Width = 89
+      Height = 25
+      Caption = 'Gravar'
+      Enabled = False
+      TabOrder = 4
+    end
+    object EdtIDUsuario: TEdit
+      Left = 100
+      Top = 13
+      Width = 53
+      Height = 21
+      Alignment = taCenter
+      Enabled = False
+      MaxLength = 20
+      TabOrder = 5
+    end
+    object BtnOperacao: TButton
+      Left = 488
+      Top = 150
+      Width = 97
+      Height = 25
+      Caption = 'Novo Registro'
+      TabOrder = 6
+    end
+    object GbAlterarSenha: TGroupBox
+      Left = 104
+      Top = 121
+      Width = 361
+      Height = 54
+      Caption = 'Marca essa op'#231#227'o Para Aterar Senha no Modo de Edi'#231#227'o.'
+      TabOrder = 7
+      object CHAlterarSenha: TCheckBox
+        Left = 24
+        Top = 24
+        Width = 135
+        Height = 17
+        Caption = 'Quero Alterar a Senha.'
+        TabOrder = 0
+      end
+    end
+    object BtnCancelar: TButton
+      Left = 686
+      Top = 150
+      Width = 83
+      Height = 25
+      Caption = 'Cancelar'
+      Enabled = False
+      TabOrder = 8
+      OnClick = BtnCancelarClick
+    end
+  end
+  object GBGridUsuarios: TGroupBox
+    Left = 0
+    Top = 193
+    Width = 781
+    Height = 269
+    Align = alClient
+    Caption = 'Usu'#225'rios'
+    TabOrder = 2
+    object DBGridUsuario: TDBGrid
+      Left = 2
+      Top = 15
+      Width = 777
+      Height = 252
+      Align = alClient
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgTitleClick]
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+    end
+  end
+end

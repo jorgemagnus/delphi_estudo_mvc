@@ -1,0 +1,61 @@
+object View_FrmPrincipal: TView_FrmPrincipal
+  Left = 0
+  Top = 0
+  Caption = 'APLICATIVO'
+  ClientHeight = 449
+  ClientWidth = 714
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  Menu = MenuPrincipal
+  OldCreateOrder = False
+  WindowState = wsMaximized
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  object BarraStatusPrincipal: TStatusBar
+    Left = 0
+    Top = 430
+    Width = 714
+    Height = 19
+    Panels = <
+      item
+        Alignment = taCenter
+        Text = 'Data Sistema'
+        Width = 100
+      end
+      item
+        Text = 'Usu'#225'rio Logado:'
+        Width = 100
+      end
+      item
+        Alignment = taCenter
+        Text = 'Usuario Nome'
+        Width = 200
+      end
+      item
+        Alignment = taCenter
+        Text = 'Mensagem'
+        Width = 50
+      end>
+    ExplicitLeft = 360
+    ExplicitTop = 440
+    ExplicitWidth = 0
+  end
+  object MenuPrincipal: TMainMenu
+    Left = 552
+    Top = 40
+    object mnuArquivo: TMenuItem
+      Caption = '&Arquivo'
+      object mnuSair: TMenuItem
+        Caption = '&Sair'
+        ShortCut = 16467
+        OnClick = mnuSairClick
+      end
+    end
+  end
+end

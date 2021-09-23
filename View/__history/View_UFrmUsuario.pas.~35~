@@ -1,0 +1,54 @@
+unit View_UFrmUsuario;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, View_UFrmPadraoSimples, Vcl.ComCtrls,
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls;
+
+type
+  TView_FrmUsuario = class(TView_FrmPadraoSimples)
+    GBDadosUsuario: TGroupBox;
+    GBGridUsuarios: TGroupBox;
+    DBGridUsuario: TDBGrid;
+    Label1: TLabel;
+    EdtUsuario: TEdit;
+    EdtSenha: TEdit;
+    Label2: TLabel;
+    EdtRepetiSenha: TEdit;
+    Label3: TLabel;
+    GBAtivoInativo: TGroupBox;
+    RBAtivo: TRadioButton;
+    RBInativo: TRadioButton;
+    BtnGravar: TButton;
+    EdtIDUsuario: TEdit;
+    Label4: TLabel;
+    BtnOperacao: TButton;
+    GbAlterarSenha: TGroupBox;
+    CHAlterarSenha: TCheckBox;
+    BtnCancelar: TButton;
+    procedure BtnCancelarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    opcao:integer;
+  end;
+
+var
+  View_FrmUsuario: TView_FrmUsuario;
+
+implementation
+
+{$R *.dfm}
+
+uses Controller_Usuario, Funcoes_Gerais;
+
+procedure TView_FrmUsuario.BtnCancelarClick(Sender: TObject);
+begin
+  //Botão Cancelar
+  Controller_Usuario_CancelarEdicaoGravacao;
+end;
+
+end.

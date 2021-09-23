@@ -1,0 +1,34 @@
+unit View.FrmPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ComCtrls;
+
+type
+  TView_FrmPrincipal = class(TForm)
+    BarraStatusPrincipal: TStatusBar;
+    MenuPrincipal: TMainMenu;
+    mnuArquivo: TMenuItem;
+    mnuSair: TMenuItem;
+    procedure mnuSairClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  View_FrmPrincipal: TView_FrmPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+procedure TView_FrmPrincipal.mnuSairClick(Sender: TObject);
+begin
+  close;
+end;
+
+end.

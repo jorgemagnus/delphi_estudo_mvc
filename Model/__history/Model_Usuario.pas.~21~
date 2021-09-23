@@ -1,0 +1,149 @@
+unit Model_Usuario;
+
+interface
+uses System.SysUtils, FireDAC.Stan.Param, System.Classes,
+     Data.DB, Dialogs;
+
+//funções
+function Model_Usuario_VerificarSeJaExiste(Usuario:string):boolean;
+function Model_Usuario_RetornaIDUsuario(Usuario:string):Integer;
+
+//procedures
+procedure Model_Usuario_Gravar(Usuario,Senha:string);
+procedure Model_Usuario_Editar(id:integer;Usuario,Senha:string;Status:integer);
+
+implementation
+
+uses UDataModel, Model_Conexao, View_UFrmCadUsuario;
+
+function Model_Usuario_VerificarSeJaExiste(Usuario:string):boolean;
+begin
+  Result := False;
+  try
+    AtivarConecao(1);
+    try
+      DataModel.QTemp.Close;
+      DataModel.QTemp.SQL.Clear;
+      DataModel.QTemp.SQL.Text := 'SELECT usu_usuario FROM tb_usuario WHERE usu_usuario=:usu_usuario ';
+      DataModel.QTemp.ParamByName('usu_usuario').AsString := Usuario;
+      DataModel.QTemp.Open();
+
+      if (DataModel.QTemp.RecordCount <> 0) then
+          result:=true
+
+    except
+      on E: Exception do
+        begin
+          ShowMessage('Ocorreu um erro ao verificar se usuário já cadastrado.' + sLineBreak + E.Message);
+          Abort;
+        end;
+    end;
+  finally
+    DataModel.QTemp.close;
+    AtivarConecao(2);
+  end;
+end;
+
+function Model_Usuario_RetornaIDUsuario(Usuario:string):Integer;
+begin
+  result:=0;
+  try
+    AtivarConecao(1);
+    try
+      DataModel.QTemp.Close;
+      DataModel.QTemp.SQL.Clear;
+      DataModel.QTemp.SQL.Text :='SELECT idusuario FROM tb_usuario WHERE usu_usuario=:usu_usuario;';
+      DataModel.QTemp.ParamByName('usu_usuario').AsString := Usuario;
+      DataModel.QTemp.Open;
+
+      if (DataModel.QTemp.RecordCount <> 0) then
+          result:=DataModel.QTemp.FieldByName('idusuario').AsInteger;
+
+    except
+      on E: Exception do
+        begin
+          ShowMessage('Ocorreu um erro ao verificar usuário.' + sLineBreak + E.Message);
+          Abort;
+        end;
+    end;
+  finally
+    DataModel.QTemp.close;
+    AtivarConecao(2);
+  end;
+end;
+
+procedure Model_Usuario_Gravar(Usuario,Senha:string);
+var vtemp:integer;
+begin
+  vtemp:=0;
+  //Gravar Usuário;
+  if (Model_Usuario_VerificarSeJaExiste(Usuario) = true) then
+     begin
+       ShowMessage('Usuário: '+Usuario+' Já existe no sistema');
+       abort;
+     end;
+
+
+  try
+    AtivarConecao(1);
+    try
+      DataModel.QTemp.Close;
+      DataModel.QTemp.SQL.Clear;
+      DataModel.QTemp.SQL.Text := 'INSERT INTO tb_usuario(usu_usuario, usu_senha,usu_status) '
+      +'VALUES(:usu_usuario, :usu_senha, :usu_status)';
+      DataModel.QTemp.ParamByName('usu_usuario').AsString := Usuario;
+      DataModel.QTemp.ParamByName('usu_senha').AsString   := Senha;
+      DataModel.QTemp.ParamByName('usu_status').AsInteger := 1;
+      DataModel.QTemp.ExecSQL;
+      vtemp:=1;
+      ShowMessage('REGISTRO GRAVADO COM SUCESSO!.');
+
+    except
+      on E: Exception do
+        begin
+          ShowMessage('Ocorreu um erro ao gravar usuário!' + sLineBreak + E.Message);
+          vtemp:=0;
+          Abort;
+        end;
+    end;
+  finally
+    DataModel.QTemp.close;
+    AtivarConecao(2);
+    if (vtemp = 1) then
+      View_FrmCadUsuario.EdtCodigo.Text:=IntToStr(Model_Usuario_RetornaIDUsuario(Usuario));
+  end;
+end;
+
+procedure Model_Usuario_Editar(id:integer;Usuario,Senha:string;Status:integer);
+begin
+  try
+    AtivarConecao(1);
+    try
+      DataModel.QTemp.Close;
+      DataModel.QTemp.SQL.Clear;
+      DataModel.QTemp.SQL.Text := 'UPDATE tb_usuario SET usu_usuario=:usu_usuario, usu_senha=:usu_senha '
+      +'usu_status=:usu_status WHERE idusuario=:idusuario';
+      DataModel.QTemp.ParamByName('usu_usuario').AsString := Usuario;
+      DataModel.QTemp.ParamByName('usu_senha').AsString   := senha;
+      DataModel.QTemp.ParamByName('usu_status').AsInteger := Status;
+      DataModel.QTemp.ExecSQL;
+
+
+      ShowMessage('REGISTRO ATUALIZADO COM SUCESSO!.');
+
+    except
+      on E: Exception do
+        begin
+          ShowMessage('Ocorreu um erro ao editar usuário!.' + sLineBreak + E.Message);
+          abort;
+        end;
+    end;
+  finally
+    DataModel.QTemp.close;
+    AtivarConecao(2);
+  end;
+
+
+end;
+
+end.

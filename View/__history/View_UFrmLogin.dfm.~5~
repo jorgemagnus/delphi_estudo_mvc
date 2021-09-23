@@ -1,0 +1,117 @@
+object View_FrmLogin: TView_FrmLogin
+  Left = 0
+  Top = 0
+  ActiveControl = BtnEntrar
+  BorderIcons = []
+  BorderStyle = bsSingle
+  Caption = 'ENTRAR NO SISTEMA'
+  ClientHeight = 426
+  ClientWidth = 246
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  object ImgLogin: TImage
+    Left = 64
+    Top = 8
+    Width = 105
+    Height = 113
+  end
+  object GBUsuario: TGroupBox
+    Left = 8
+    Top = 136
+    Width = 225
+    Height = 153
+    Caption = 'Insira os dados abaixo:'
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 20
+      Top = 32
+      Width = 40
+      Height = 13
+      Caption = 'Usu'#225'rio:'
+    end
+    object Label2: TLabel
+      Left = 20
+      Top = 88
+      Width = 34
+      Height = 13
+      Caption = 'Senha:'
+    end
+    object PSombra2: TPanel
+      Left = 30
+      Top = 107
+      Width = 185
+      Height = 23
+      Color = clBlack
+      ParentBackground = False
+      TabOrder = 3
+    end
+    object PSombra1: TPanel
+      Left = 30
+      Top = 52
+      Width = 185
+      Height = 23
+      Color = clBlack
+      ParentBackground = False
+      TabOrder = 2
+    end
+    object EdtUsuario: TEdit
+      Left = 20
+      Top = 48
+      Width = 189
+      Height = 21
+      TabOrder = 0
+      TextHint = 'Digite aqui seu Usu'#225'rio.'
+    end
+    object EdtSenha: TEdit
+      Left = 20
+      Top = 104
+      Width = 189
+      Height = 21
+      PasswordChar = '*'
+      TabOrder = 1
+      TextHint = 'Digite aqui sua Senha.'
+    end
+  end
+  object BtnEntrar: TButton
+    Left = 29
+    Top = 311
+    Width = 189
+    Height = 33
+    Caption = 'Entrar no Sistema'
+    TabOrder = 1
+    OnClick = BtnEntrarClick
+  end
+  object BtnSair: TButton
+    Left = 29
+    Top = 350
+    Width = 188
+    Height = 32
+    Caption = 'Sair'
+    TabOrder = 2
+    OnClick = BtnSairClick
+  end
+  object BarraStatusLogin: TStatusBar
+    Left = 0
+    Top = 407
+    Width = 246
+    Height = 19
+    Panels = <
+      item
+        Alignment = taCenter
+        Text = 'SISTEMA XXXX'
+        Width = 50
+      end>
+    ExplicitTop = 387
+    ExplicitWidth = 248
+  end
+end
