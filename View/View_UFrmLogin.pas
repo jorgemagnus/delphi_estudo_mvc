@@ -42,61 +42,8 @@ uses View_UFrmPrincipal, Controller_Acesso;
 
 procedure TView_FrmLogin.BtnEntrarClick(Sender: TObject);
 begin
-    //Entrar no sistema.
-
-     case (Controller_Acesso_EntradaAcessoLogin(EdtUsuario.Text,EdtSenha.Text)) of
-       1:begin
-           ShowMessage('AVISO - INFORME USUÁRIO!.');
-           EdtUsuario.SetFocus;
-           exit;
-        end;
-       2:begin
-           ShowMessage('AVISO - INFORME SENHA!.');
-           EdtSenha.SetFocus;
-           Exit;
-        end;
-       3:begin
-           ShowMessage('AVISO - INFORME USUÁRIO E SENHA!.');
-           EdtUsuario.SetFocus;
-           Exit;
-        end;
-     end;
-
-
-     if (Controller_Acesso_ExisteOUsuario(EdtUsuario.Text) = false) then
-         begin
-           ShowMessage('AVISO - USUÁRIO NÃO EXISTE!.');
-           EdtUsuario.SetFocus;
-           Exit;
-         end;
-
-
-     if (Controller_Acesso_ValidarStatus(EdtUsuario.Text)=false) then
-         begin
-           ShowMessage('AVISO - USÚARIO ENCONTRA-SE INATIVO NO SISTEMA.!.');
-           EdtUsuario.SetFocus;
-           Exit;
-         end;
-
-
-     if (Controller_Acesso_ValidarAcesso(EdtUsuario.Text,EdtSenha.Text)=true) then
-           begin
-             with (View_FrmPrincipal) do
-              begin
-                 BarraStatusPrincipal.Panels[0].Text:=DateToStr(Date);
-                 BarraStatusPrincipal.Panels[2].Text:=UpperCase(EdtUsuario.Text);
-                 BarraStatusPrincipal.Panels[3].Text:=UpperCase('BEM-VINDO AO SISTEMA : '+UpperCase(EdtUsuario.Text));
-              end;
-             View_FrmLogin.Close;
-             View_FrmPrincipal.Show;
-           end
-      else
-          begin
-            EdtUsuario.Clear;
-            EdtSenha.Clear;
-            EdtUsuario.SetFocus;
-            ShowMessage('OPS!! - VERIFIQUE SEU USUARIO E SENHA!. -(DUVÍDAS ENTRE EM CONTATO COM O SUPORTE).');
-          end;
+  //Entrar no Sistema.
+  Controller_Acesso_Sistema(EdtUsuario.Text,EdtSenha.Text);
 end;
 
 procedure TView_FrmLogin.BtnSairClick(Sender: TObject);

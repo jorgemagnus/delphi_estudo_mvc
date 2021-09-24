@@ -25,7 +25,6 @@ function TAcesso.Model_Acesso_ValidarUsuarioStatus(Usuario:string):boolean;
 begin
   //se o usuário estiver ativo no sistema 1(true) se não 0(false)
   Result := False;
-
     try
 
       Qry.Close;
@@ -45,15 +44,12 @@ begin
           Abort;
         end;
     end;
-
 end;
 
 function TAcesso.Model_Acesso_ValidarUsuario(Usuario,Senha:string):boolean;
 begin
   //Valida se o usuário e a senha estão corretos.
   Result := False;
-
-
     try
       Qry.Close;
       Qry.SQL.Clear;
@@ -73,9 +69,6 @@ begin
           abort;
         end;
     end;
-
-
-
 end;
 
 function TAcesso.Model_Acesso_UsuarioExiste(Usuario:string):boolean;

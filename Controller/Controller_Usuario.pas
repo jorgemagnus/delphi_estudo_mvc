@@ -10,6 +10,7 @@ procedure Controller_Usuario_Editar(id:integer;Usuario,Senha:string;Status:integ
 procedure Controller_Usuario_CamposObrigatoriosParaGravar;
 
 var Usuario_:TUsuario_;
+    IdUsuario:integer;
 
 implementation
 
@@ -25,6 +26,7 @@ procedure Controller_Usuario_Gravar(Usuario,Senha:string);
 begin
    Usuario_:=TUsuario_.Create;
    Usuario_.Model_Usuario_Gravar(Usuario,Senha);
+   View_FrmCadUsuario.EdtCodigo.Text:=IntToStr(IdUsuario);
 end;
 
 procedure Controller_Usuario_Editar(id:integer;Usuario,Senha:string;Status:integer);

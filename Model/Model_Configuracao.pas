@@ -18,7 +18,7 @@ type
 
 implementation
 
-uses View_UFrmConfiguracao;
+uses Controller_Configuracao;
 
 procedure TConfiguracao.Model_Configuracao_Gravar(id:integer;Configuracao:string;campo:integer);
 begin
@@ -58,8 +58,8 @@ begin
       case id of
        1:begin
          //Local das fotos.
-         View_FrmConfiguracao.EdtIDLocalFoto.Text:=Qry.FieldByName('idconfiguracao').AsString;
-         View_FrmConfiguracao.EdtLocalFoto.Text:=Qry.FieldByName('con_local_foto').AsString;
+         id_       :=Qry.FieldByName('idconfiguracao').AsInteger;
+         localFoto :=Qry.FieldByName('con_local_foto').AsString;
        end;
       end;
     except
@@ -70,5 +70,6 @@ begin
         end;
     end;
 end;
+
 
 end.

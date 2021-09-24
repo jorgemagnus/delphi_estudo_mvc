@@ -11,8 +11,8 @@ inherited View_FrmConfiguracao: TView_FrmConfiguracao
   inherited BarraStatusPadrao: TStatusBar
     Top = 107
     Width = 771
-    ExplicitTop = 478
-    ExplicitWidth = 769
+    ExplicitTop = 107
+    ExplicitWidth = 771
   end
   object GbConfiguracao: TGroupBox
     Left = 0
@@ -22,8 +22,6 @@ inherited View_FrmConfiguracao: TView_FrmConfiguracao
     Align = alClient
     Caption = 'CONFIGURA'#199#195'O - Local da Foto'
     TabOrder = 1
-    ExplicitWidth = 769
-    ExplicitHeight = 478
     object Label1: TLabel
       Left = 9
       Top = 29

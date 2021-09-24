@@ -4,19 +4,22 @@ unit Controller_Configuracao;
 interface
 uses DateUtils, IniFiles, StrUtils, SysUtils, Dialogs, Model_Configuracao;
 
-//funções
 
 //procedimentos
 procedure Controller_Configuracao_Gravar(id:integer;Configuracao:string;campo:integer);
 procedure Controller_Configuracao_PreencherCamposLocalFoto;
 
+
 //Variáveis
 var Configuracao_:TConfiguracao;
+    id_:Integer;
+    localFoto:string;
+
 
 
 implementation
 
-uses Controller_Acesso;
+uses  View_UFrmConfiguracao;
 
 procedure Controller_Configuracao_Gravar(id:integer;Configuracao:string;campo:integer);
 begin
@@ -40,7 +43,11 @@ begin
   //preencher tela.
   Configuracao_:=TConfiguracao.Create;
   Configuracao_.Model_Configuracao_PreencherCampoLocalFoto(1);
+  View_FrmConfiguracao.EdtIDLocalFoto.Text:=IntTostr(id_);
+  View_FrmConfiguracao.EdtLocalFoto.Text:=localFoto;
 end;
+
+
 
 
 end.

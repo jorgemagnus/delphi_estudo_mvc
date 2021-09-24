@@ -116,14 +116,6 @@
             <Form>View_FrmPadraoCadastro</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Model\Model_Conexao.pas"/>
-        <DCCReference Include="..\Model\Model_Conexao_Parametros.pas"/>
-        <DCCReference Include="..\Arquivo\Funcoes_Gerais\Funcoes_Gerais.pas"/>
-        <DCCReference Include="..\Model\UDataModel.pas">
-            <Form>DataModel</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <DCCReference Include="..\Controller\Controller_Acesso.pas"/>
         <DCCReference Include="..\Model\Model_Acesso.pas"/>
         <DCCReference Include="..\Controller\Controller_Configuracao.pas"/>
@@ -138,7 +130,15 @@
             <Form>View_FrmCadUsuario</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Model\Model_Conexao_DAO.pas"/>
+        <DCCReference Include="..\Model\Conexao\Model_Conexao.pas"/>
+        <DCCReference Include="..\Model\Conexao\Model_Conexao_DAO.pas"/>
+        <DCCReference Include="..\Model\Conexao\Model_Conexao_Parametros.pas"/>
+        <DCCReference Include="..\Model\Conexao\DM\UDataModel.pas">
+            <Form>DataModel</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\Arquivo\Rotinas\Rotinas.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

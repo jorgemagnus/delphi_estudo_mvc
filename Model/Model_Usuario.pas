@@ -9,12 +9,12 @@ type
   TUsuario_ = Class(TDAOConexao)
   private
     //Métodos Privados
+    function Model_Usuario_RetornaIDUsuario(Usuario:string):Integer;
   public
     //Métodos Públicos.
 
     //funções
     function Model_Usuario_VerificarSeJaExiste(Usuario:string):boolean;
-    function Model_Usuario_RetornaIDUsuario(Usuario:string):Integer;
 
     //procedures
     procedure Model_Usuario_Gravar(Usuario,Senha:string);
@@ -24,7 +24,7 @@ type
 
 implementation
 
-uses View_UFrmCadUsuario;
+uses Controller_Usuario;
 
 function TUsuario_.Model_Usuario_VerificarSeJaExiste(Usuario:string):boolean;
 begin
@@ -76,7 +76,7 @@ begin
   //Gravar Usuário;
   if (Model_Usuario_VerificarSeJaExiste(Usuario) = true) then
      begin
-       ShowMessage('Usuário: '+Usuario+' Já existe no sistema');
+       ShowMessage('Usuário: '+UpperCase(Usuario)+' Já existe no sistema');
        abort;
      end;
 
@@ -91,7 +91,7 @@ begin
       Qry.ParamByName('usu_status').AsInteger := 1;
       Qry.ExecSQL;
 
-      View_FrmCadUsuario.EdtCodigo.Text:=IntToStr(Model_Usuario_RetornaIDUsuario(Usuario));
+      IdUsuario:=Model_Usuario_RetornaIDUsuario(Usuario);
 
       ShowMessage('REGISTRO GRAVADO COM SUCESSO!.');
 
