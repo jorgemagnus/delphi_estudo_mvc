@@ -1,0 +1,22 @@
+unit Model_Log;
+
+interface
+uses System.SysUtils, FireDAC.Stan.Param, System.Classes,
+     Data.DB, Dialogs, Model_Conexao_DAO;
+
+
+type
+  Tlog_ = Class(TDAOConexao)
+  private
+    //Métodos Privados
+
+  public
+    //Métodos Públicos.
+
+    //procedures
+
+  End;
+
+implementation
+
+end.

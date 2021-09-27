@@ -1,7 +1,7 @@
 object DataModel: TDataModel
   OldCreateOrder = False
-  Height = 144
-  Width = 193
+  Height = 140
+  Width = 367
   object DBConexao: TFDConnection
     Params.Strings = (
       'DriverID=MySQL')
@@ -15,8 +15,13 @@ object DataModel: TDataModel
     Left = 40
     Top = 80
   end
-  object DbMySQLLink: TFDPhysMySQLDriverLink
-    Left = 120
+  object DB_MySQL_DriverLink: TFDPhysMySQLDriverLink
+    Left = 160
+    Top = 24
+  end
+  object DB_FB_DriverLink: TFDPhysFBDriverLink
+    VendorLib = 'C:\Program Files\Firebird\Firebird_3_0\fbclient.dll'
+    Left = 272
     Top = 24
   end
 end

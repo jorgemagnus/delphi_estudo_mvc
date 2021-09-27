@@ -5,7 +5,7 @@ interface
 uses DateUtils, IniFiles, StrUtils, SysUtils, Dialogs, Forms;
 
 //BLOCO FUNÇÕES
-Function LerArquivoIni(NomedaSessao,ValorDaSessao,Variavel:string):string;
+function LerArquivoIni(NomedaSessao,ValorDaSessao,Variavel:string):string;
 function VerificarSenhaDigitadasSaoIguais(senha_1,senha_2:string):Boolean;
 
 //BLOCO DE PROCEDURES

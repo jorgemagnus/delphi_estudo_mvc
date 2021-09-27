@@ -24,7 +24,7 @@ type
 
 implementation
 
-uses Controller_Usuario;
+uses Controller_Usuario, Controller_Log;
 
 function TUsuario_.Model_Usuario_VerificarSeJaExiste(Usuario:string):boolean;
 begin
@@ -92,6 +92,7 @@ begin
       Qry.ExecSQL;
 
       IdUsuario:=Model_Usuario_RetornaIDUsuario(Usuario);
+      Controller_Log_Gravar(IdUsuario,'INSERT','tb_usuario','usu_usuario ('+Usuario+')');
 
       ShowMessage('REGISTRO GRAVADO COM SUCESSO!.');
 
@@ -117,7 +118,7 @@ begin
       Qry.ParamByName('usu_status').AsInteger := Status;
       Qry.ExecSQL;
 
-
+      Controller_Log_Gravar(id,'UPDATE','tb_usuario','usu_usuario ('+Usuario+')');
       ShowMessage('REGISTRO ATUALIZADO COM SUCESSO!.');
 
     except
@@ -129,5 +130,6 @@ begin
     end;
 
 end;
+
 
 end.

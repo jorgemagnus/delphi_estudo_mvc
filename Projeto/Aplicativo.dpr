@@ -18,7 +18,9 @@ uses
   Model_Conexao_DAO in '..\Model\Conexao\Model_Conexao_DAO.pas',
   Model_Conexao_Parametros in '..\Model\Conexao\Model_Conexao_Parametros.pas',
   UDataModel in '..\Model\Conexao\DM\UDataModel.pas' {DataModel: TDataModule},
-  Rotinas in '..\Arquivo\Rotinas\Rotinas.pas';
+  Rotinas in '..\Arquivo\Rotinas\Rotinas.pas',
+  Model_Log in '..\Model\Model_Log.pas',
+  Controller_Log in '..\Controller\Controller_Log.pas';
 
 {$R *.res}
 

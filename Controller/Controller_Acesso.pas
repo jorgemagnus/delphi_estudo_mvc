@@ -88,6 +88,9 @@ begin
              //4 Passo, Aprovar o Acesso.
              if (Controller_Acesso_ValidarAcesso(Usuario,Senha)=true) then
                 begin
+                   //5 Passo, verifico o que o usuario tem acesso dos menus.
+                     //Controller_Acesso_Menu(usuario);
+
                    with (View_FrmPrincipal) do
                       begin
                          BarraStatusPrincipal.Panels[0].Text:=DateToStr(Date);

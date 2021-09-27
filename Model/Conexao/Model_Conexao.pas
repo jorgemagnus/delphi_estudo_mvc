@@ -23,7 +23,7 @@ begin
           DataModel.DBConexao.Params.Values['Database']   :=FDataBase;
           DataModel.DBConexao.Params.Values['User_Name']  :=FUserName;
           DataModel.DBConexao.Params.Values['Password']   :=FPassword;
-          DataModel.DbMySQLLink.VendorLib                 :=FVendorLib;
+          DataModel.DB_MySQL_DriverLink.VendorLib         :=FVendorLib;
           DataModel.DBConexao.Connected                   :=True;
           Result                                          :=true;
         end;

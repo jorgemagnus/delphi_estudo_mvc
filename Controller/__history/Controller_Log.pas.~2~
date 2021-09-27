@@ -1,0 +1,24 @@
+unit Controller_Log;
+
+interface
+
+uses SysUtils, Dialogs, Model_Log;
+
+//procedures
+
+
+var Ulog:Tlog_;
+
+
+implementation
+
+procedure Controller_Log_Gravar(Usuario,Senha:string);
+begin
+   Ulog:=Tlog_.Create;
+   Ulog.Model_Usuario_Gravar(Usuario,Senha);
+   View_FrmCadUsuario.EdtCodigo.Text:=IntToStr(IdUsuario);
+end;
+
+
+
+end.
