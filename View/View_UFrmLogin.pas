@@ -28,15 +28,14 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
+    CAcesso:TControllerAcesso;
+    CUsuario:TUsuario;
   public
     { Public declarations }
   end;
 
 var
   View_FrmLogin: TView_FrmLogin;
-  CAcesso:TControllerAcesso;
-  CUsuario:TUsuario;
-
 
 implementation
 
@@ -49,9 +48,25 @@ begin
   //Entrar no Sistema.
   CAcesso:=TControllerAcesso.Create;
   CUsuario:=TUsuario.Create;
+
+  CAcesso.Controller_validarCampoUsuario(EdtUsuario,'INFORME USUÁRIO');
   CUsuario.USU_USUARIO:=EdtUsuario.Text;
+
+  CAcesso.Controller_validarCampoUsuario(EdtSenha,'INFORME SENHA');
   CUsuario.USU_SENHA:=EdtSenha.Text;
+
   CAcesso.Controller_Acesso_Sistema(CUsuario);
+
+
+  if (CAcesso.LoginAprovado) then
+     begin
+         View_FrmPrincipal.BarraStatusPrincipal.Panels[0].Text:=DateToStr(Date);
+         View_FrmPrincipal.BarraStatusPrincipal.Panels[2].Text:=UpperCase(EdtUsuario.Text);
+         View_FrmPrincipal.BarraStatusPrincipal.Panels[3].Text:=UpperCase('BEM-VINDO AO SISTEMA : '+EdtUsuario.Text);
+         View_FrmLogin.Close;
+         View_FrmPrincipal.Show;
+     end;
+
 end;
 
 procedure TView_FrmLogin.BtnSairClick(Sender: TObject);

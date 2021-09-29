@@ -14,7 +14,7 @@ uses
   View_UFrmCadUsuario in '..\View\View_UFrmCadUsuario.pas' {View_FrmCadUsuario},
   uConexao in '..\DAO\Conexao\uConexao.pas',
   uConexao_Parametros in '..\DAO\Conexao\uConexao_Parametros.pas',
-  uDAO_DataModel in '..\DAO\uDAO_DataModel.pas' {DataModel: TDataModule},
+  uDAO_DataModel in '..\DAO\Conexao\uDAO_DataModel.pas' {DataModel: TDataModule},
   Rotinas in '..\Arquivo\Rotinas\Rotinas.pas',
   uDAO_Log in '..\DAO\uDAO_Log.pas',
   uController_Log in '..\Controller\uController_Log.pas',
@@ -22,7 +22,10 @@ uses
   uController_Usuario in '..\Controller\uController_Usuario.pas',
   uDAO_Usuario in '..\DAO\uDAO_Usuario.pas',
   uLog in '..\Classes\uLog.pas',
-  uConexao_DAO in '..\DAO\Conexao\uConexao_DAO.pas';
+  uConexao_DAO in '..\DAO\Conexao\uConexao_DAO.pas',
+  uPessoa in '..\Classes\uPessoa.pas',
+  uController_Pessoa in '..\Controller\uController_Pessoa.pas',
+  uDAO_Pessoa in '..\DAO\uDAO_Pessoa.pas';
 
 {$R *.res}
 

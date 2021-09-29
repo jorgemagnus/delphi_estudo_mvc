@@ -2,13 +2,14 @@ unit uController_Acesso;
 //Unit de controle de acesso ao sistema pelo usuário.
 
 interface
-uses SysUtils, Dialogs, Forms, uUsuario, uDAO_Acesso;
+uses SysUtils, Dialogs, Forms, uUsuario, uDAO_Acesso, Vcl.StdCtrls;
 
 type
 TControllerAcesso = class
    private
     FOUSuarioAcesso   : TUsuario;
     FOUsuarioAcessoDAO: TDAOAcesso;
+    DaoAcesso:TDAOAcesso;
   public
     constructor Create;
     destructor Destroy; override;
@@ -21,21 +22,18 @@ TControllerAcesso = class
     function Controller_Acesso_ValidarStatus(Usuario:string):boolean;
     function Controller_Acesso_ValidarAcesso(Usuario,Senha:String):boolean;
 
-
     //procedimentos
-    Procedure Controller_Acesso_VerificarCampos(VUsuario:TUsuario);
+    procedure Controller_validarCampoUsuario(campo:TEdit;mensagem:string);
     procedure Controller_Acesso_Sistema(vUsuario:TUsuario);
 
 
-    var DaoAcesso:TDAOAcesso;
+    var LoginAprovado:Boolean;
 end;
 
 
 implementation
 
 { TControllerAcesso }
-
-uses View_UFrmLogin, View_UFrmPrincipal;
 
 constructor TControllerAcesso.Create;
 begin
@@ -54,101 +52,63 @@ function TControllerAcesso.Controller_Acesso_ExisteOUsuario(Usuario:string):Bool
 begin
   Result:=false;
   DaoAcesso:=TDAOAcesso.Create;
-  if (DaoAcesso.DAO_Acesso_UsuarioExiste(Usuario)=true) then
+  if (DaoAcesso.DAO_Acesso_UsuarioExiste(Usuario)) then
      Result:=true;
 end;
 
 function TControllerAcesso.Controller_Acesso_ValidarStatus(Usuario:string):boolean;
 begin
-   Result:=true;
+   Result:=false;
    DaoAcesso:=TDAOAcesso.Create;
-   if (DaoAcesso.DAO_Acesso_ValidarUsuarioStatus(Usuario)=false) then
-      Result:=false;
+   if (DaoAcesso.DAO_Acesso_ValidarUsuarioStatus(Usuario)) then
+      Result:=true;
 end;
 
 function TControllerAcesso.Controller_Acesso_ValidarAcesso(Usuario,Senha:String):boolean;
 begin
    Result:=false;
    DaoAcesso:=TDAOAcesso.Create;
-   if (DaoAcesso.DAO_Acesso_ValidarUsuario(Usuario,Senha)=true) then
+   if (DaoAcesso.DAO_Acesso_ValidarUsuario(Usuario,Senha)) then
       Result:=true;
 end;
 
-Procedure TControllerAcesso.Controller_Acesso_VerificarCampos(Vusuario:TUsuario);
+procedure TControllerAcesso.Controller_validarCampoUsuario(campo:TEdit;mensagem:string);
 begin
-     if (VUsuario.USU_USUARIO.IsEmpty = true) then
-             begin
-                 ShowMessage('AVISO - INFORME USUÁRIO!.');
-                 View_FrmLogin.EdtUsuario.SetFocus;
-                 Abort;
-              end;
-
-     if (VUsuario.USU_SENHA.IsEmpty = true) then
-             begin
-                 ShowMessage('AVISO - INFORME SENHA DE ACESSO!.');
-                 View_FrmLogin.EdtSenha.SetFocus;
-                 Abort;
-              end;
-
-     if ((VUsuario.USU_USUARIO.IsEmpty = true) AND (VUsuario.USU_SENHA.IsEmpty = true)) then
-             begin
-                 ShowMessage('AVISO - OBRIGATÓRIO INFORMAR USUÁRIO E SENHA PARA ACESSO AO SISTEMA!.');
-                 View_FrmLogin.EdtUsuario.SetFocus;
-                 Abort;
-              end;
+    if (campo.text) = EmptyStr then
+      begin
+       campo.SetFocus;
+       ShowMessage('ATENÇÃO - '+mensagem);
+       abort;
+      end;
 end;
 
 procedure TControllerAcesso.Controller_Acesso_Sistema(vUsuario:TUsuario);
 begin
-
-   //1 Passo, Verifico os campos.
-   Controller_Acesso_VerificarCampos(vUsuario);
-
-  //2 Passo, verifico se o usuário existe.
-  if (Controller_Acesso_ExisteOUsuario(VUsuario.USU_USUARIO)=true) then
+   LoginAprovado:=false;
+  //1 Passo, verifico se o usuário existe.
+  if (Controller_Acesso_ExisteOUsuario(VUsuario.USU_USUARIO)) then
      begin
-
-       //3 Passo, Verifico o status dele, se ativo, ok.
-        if (Controller_Acesso_ValidarStatus(VUsuario.USU_USUARIO)=true) then
+       //2 Passo, Verifico o status dele, se ativo, ok.
+        if (Controller_Acesso_ValidarStatus(VUsuario.USU_USUARIO)) then
            begin
-
-             //4 Passo, Aprovar o Acesso.
-             if (Controller_Acesso_ValidarAcesso(VUsuario.USU_USUARIO,VUsuario.USU_SENHA)=true) then
-                begin
-                   //5 Passo, verifico o que o usuario tem acesso dos menus.
-                     //Controller_Acesso_Menu(usuario);
-
-                   with (View_FrmPrincipal) do
-                      begin
-                         BarraStatusPrincipal.Panels[0].Text:=DateToStr(Date);
-                         BarraStatusPrincipal.Panels[2].Text:=UpperCase(VUsuario.USU_USUARIO);
-                         BarraStatusPrincipal.Panels[3].Text:=UpperCase('BEM-VINDO AO SISTEMA : '+VUsuario.USU_USUARIO);
-                      end;
-                      View_FrmLogin.Close;
-                      View_FrmPrincipal.Show;
-                end
+             //3 Passo, Aprovar o Acesso.
+             if (Controller_Acesso_ValidarAcesso(VUsuario.USU_USUARIO,VUsuario.USU_SENHA)) then
+                  LoginAprovado:=true
              else
                begin
-                 ShowMessage('ATENÇÃO!!! - Verique sua Senha!.');
-                 View_FrmLogin.EdtSenha.SetFocus;
+                 ShowMessage('ATENÇÃO! - Seu Login não foi Aprovado, é provável que sua Senha Esteja Errada!.');
                  abort;
                end;
-
-
            end
         else
           begin
             ShowMessage('Usuário: '+UpperCase(VUsuario.USU_USUARIO)+' encontra-se inativo no sistema!.');
-            View_FrmLogin.EdtUsuario.SetFocus;
             abort;
           end;
-
-
      end
   else
      begin
         ShowMessage('Usuário: '+UpperCase(VUsuario.USU_USUARIO)+' não existe!');
-        View_FrmLogin.EdtUsuario.SetFocus;
         abort;
      end;
 

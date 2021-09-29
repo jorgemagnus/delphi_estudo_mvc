@@ -1,0 +1,14 @@
+unit uPessoa;
+
+interface
+type
+   TPessoa = Class
+   private
+
+   public
+
+   End;
+
+implementation
+
+end.

@@ -33,7 +33,7 @@ begin
       Qry.ParamByName('usu_status').AsInteger := 1;
       Qry.Open;
 
-      if (Qry.RecordCount <> 0) then
+      if not(Qry.IsEmpty) then
           result:=true
 
     except

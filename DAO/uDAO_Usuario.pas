@@ -33,8 +33,7 @@ begin
       Qry.ParamByName('usu_usuario').AsString := Usuario;
       Qry.Open;
 
-      if (Qry.RecordCount <> 0) then
-          result:=true
+      result:=not(Qry.IsEmpty);
 
     except
       on E: Exception do
@@ -56,7 +55,7 @@ begin
       Qry.ParamByName('usu_usuario').AsString := Usuario;
       Qry.Open;
 
-      if (Qry.RecordCount <> 0) then
+      if (not(Qry.IsEmpty)) then
           result:=Qry.FieldByName('idusuario').AsInteger;
 
     except
@@ -71,7 +70,7 @@ end;
 procedure TDaoUsuario.Model_Usuario_Gravar(MUsuario:TUsuario);
 begin
   //Gravar Usuário;
-  if (Model_Usuario_VerificarSeJaExiste(MUsuario.USU_USUARIO) = true) then
+  if (Model_Usuario_VerificarSeJaExiste(MUsuario.USU_USUARIO)) then
      begin
        ShowMessage('Usuário: '+UpperCase(MUsuario.USU_USUARIO)+' Já existe no sistema');
        abort;

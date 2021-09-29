@@ -130,7 +130,7 @@
         </DCCReference>
         <DCCReference Include="..\DAO\Conexao\uConexao.pas"/>
         <DCCReference Include="..\DAO\Conexao\uConexao_Parametros.pas"/>
-        <DCCReference Include="..\DAO\uDAO_DataModel.pas">
+        <DCCReference Include="..\DAO\Conexao\uDAO_DataModel.pas">
             <Form>DataModel</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
@@ -143,6 +143,9 @@
         <DCCReference Include="..\DAO\uDAO_Usuario.pas"/>
         <DCCReference Include="..\Classes\uLog.pas"/>
         <DCCReference Include="..\DAO\Conexao\uConexao_DAO.pas"/>
+        <DCCReference Include="..\Classes\uPessoa.pas"/>
+        <DCCReference Include="..\Controller\uController_Pessoa.pas"/>
+        <DCCReference Include="..\DAO\uDAO_Pessoa.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
