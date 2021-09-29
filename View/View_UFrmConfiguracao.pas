@@ -32,7 +32,7 @@ implementation
 
 {$R *.dfm}
 
-uses Controller_Configuracao;
+uses uController_Configuracao;
 
 procedure TView_FrmConfiguracao.BtnGravarLocalClick(Sender: TObject);
 begin

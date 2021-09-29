@@ -21,6 +21,9 @@ type
     mnuUsuario: TMenuItem;
     mnuLocalFotos: TMenuItem;
     mnuCadastro: TMenuItem;
+    mnuAuditoria: TMenuItem;
+    mnuLogSistema: TMenuItem;
+    mnuAlterarSenha: TMenuItem;
     procedure mnuSairClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);

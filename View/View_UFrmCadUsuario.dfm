@@ -8,6 +8,7 @@ inherited View_FrmCadUsuario: TView_FrmCadUsuario
       inherited GBAba01: TGroupBox
         Caption = ''
         Enabled = False
+        ExplicitTop = -2
         object Label1: TLabel [0]
           Left = 66
           Top = 68
@@ -48,7 +49,7 @@ inherited View_FrmCadUsuario: TView_FrmCadUsuario
         object EdtUsuario: TEdit
           Left = 112
           Top = 60
-          Width = 163
+          Width = 168
           Height = 21
           MaxLength = 20
           TabOrder = 1
@@ -56,7 +57,7 @@ inherited View_FrmCadUsuario: TView_FrmCadUsuario
         object EdtSenha: TEdit
           Left = 112
           Top = 87
-          Width = 163
+          Width = 168
           Height = 21
           MaxLength = 10
           PasswordChar = '*'
@@ -65,25 +66,24 @@ inherited View_FrmCadUsuario: TView_FrmCadUsuario
         object EdtRepetiSenha: TEdit
           Left = 112
           Top = 114
-          Width = 163
+          Width = 168
           Height = 21
           MaxLength = 10
           PasswordChar = '*'
           TabOrder = 3
         end
         object GbAlterarSenha: TGroupBox
-          Left = 281
-          Top = 82
-          Width = 361
-          Height = 54
-          Caption = 'Marca essa Op'#231#227'o Para Modificar Senha(Somente no Modo de Edi'#231#227'o)'
+          Left = 112
+          Top = 141
+          Width = 168
+          Height = 49
           Enabled = False
           TabOrder = 4
           Visible = False
           object CHAlterarSenha: TCheckBox
-            Left = 24
-            Top = 24
-            Width = 209
+            Left = 6
+            Top = 14
+            Width = 154
             Height = 17
             Caption = 'Quero MODIFICAR a Senha.'
             TabOrder = 0
@@ -95,12 +95,72 @@ inherited View_FrmCadUsuario: TView_FrmCadUsuario
       Caption = 'USU'#193'RIOS (ATIVOS)'
       inherited GBAba02: TGroupBox
         Caption = ''
+        object DBG_Ativos: TDBGrid
+          Left = 2
+          Top = 15
+          Width = 1003
+          Height = 380
+          Align = alClient
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgTitleClick]
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'idusuario'
+              Title.Alignment = taCenter
+              Title.Caption = 'C'#243'digo'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'usu_usuario'
+              Title.Alignment = taCenter
+              Title.Caption = 'Usu'#225'rio'
+              Visible = True
+            end>
+        end
       end
     end
     inherited Aba03: TTabSheet
       Caption = 'USU'#193'RIOS (INATIVOS)'
       inherited GBAba03: TGroupBox
         Caption = ''
+        object DBGrid1: TDBGrid
+          Left = 2
+          Top = 15
+          Width = 1003
+          Height = 380
+          Align = alClient
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgTitleClick]
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'idusuario'
+              Title.Alignment = taCenter
+              Title.Caption = 'C'#243'digo'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'usu_usuario'
+              Title.Alignment = taCenter
+              Title.Caption = 'Usu'#225'rio'
+              Visible = True
+            end>
+        end
       end
     end
     inherited Aba04: TTabSheet

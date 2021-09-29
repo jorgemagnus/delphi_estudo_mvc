@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils,
   System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls,
-  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Imaging.pngimage;
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
+  uController_Acesso, uUsuario;
 
 type
   TView_FrmLogin = class(TForm)
@@ -33,17 +34,24 @@ type
 
 var
   View_FrmLogin: TView_FrmLogin;
+  CAcesso:TControllerAcesso;
+  CUsuario:TUsuario;
+
 
 implementation
 
 {$R *.dfm}
 
-uses View_UFrmPrincipal, Controller_Acesso;
+uses View_UFrmPrincipal;
 
 procedure TView_FrmLogin.BtnEntrarClick(Sender: TObject);
 begin
   //Entrar no Sistema.
-  Controller_Acesso_Sistema(EdtUsuario.Text,EdtSenha.Text);
+  CAcesso:=TControllerAcesso.Create;
+  CUsuario:=TUsuario.Create;
+  CUsuario.USU_USUARIO:=EdtUsuario.Text;
+  CUsuario.USU_SENHA:=EdtSenha.Text;
+  CAcesso.Controller_Acesso_Sistema(CUsuario);
 end;
 
 procedure TView_FrmLogin.BtnSairClick(Sender: TObject);

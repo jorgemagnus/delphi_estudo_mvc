@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, View_UFrmPadraoCadastro, Data.DB,
   Vcl.Menus, System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids,
-  Vcl.StdCtrls, Vcl.ComCtrls, Vcl.ToolWin;
+  Vcl.StdCtrls, Vcl.ComCtrls, Vcl.ToolWin, uUsuario, uController_Usuario;
 
 type
   TView_FrmCadUsuario = class(TView_FrmPadraoCadastro)
@@ -19,11 +19,14 @@ type
     GbAlterarSenha: TGroupBox;
     CHAlterarSenha: TCheckBox;
     Label6: TLabel;
+    DBG_Ativos: TDBGrid;
+    DBGrid1: TDBGrid;
     procedure BtnNovoClick(Sender: TObject);
     procedure BtnGravarClick(Sender: TObject);
     procedure BtnEditarClick(Sender: TObject);
     procedure BtnCancelarClick(Sender: TObject);
     procedure BtnExcluirClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -32,12 +35,15 @@ type
 
 var
   View_FrmCadUsuario: TView_FrmCadUsuario;
+  DUsuario:TUsuario;
+  MUsuario:TControllerUsuario;
+
 
 implementation
 
 {$R *.dfm}
 
-uses Controller_Usuario, Rotinas;
+uses  Rotinas;
 
 procedure TView_FrmCadUsuario.BtnCancelarClick(Sender: TObject);
 begin
@@ -63,7 +69,8 @@ end;
 procedure TView_FrmCadUsuario.BtnGravarClick(Sender: TObject);
 begin
   //Gravar ou Editar registro.
-  Controller_Usuario_CamposObrigatoriosParaGravar;
+
+  //Controller_Usuario_CamposObrigatoriosParaGravar;
 
   case operacao of
    1:begin
@@ -75,7 +82,14 @@ begin
        Exit;
       end;
 
-     Controller_Usuario_Gravar(EdtUsuario.Text,EdtSenha.Text);
+
+       MUsuario:=TControllerUsuario.Create;
+       MUsuario.OUsuario.USU_USUARIO:=EdtUsuario.Text;
+       MUsuario.OUsuario.USU_SENHA:=EdtSenha.Text;
+       MUsuario.procIncluirUsuario;
+       if (MUsuario.OUsuario.USU_CODIGO <> 0) then
+          EdtCodigo.Text:=IntToStr(MUsuario.OUsuario.USU_CODIGO);
+
    end;
    2:begin
 
@@ -96,7 +110,11 @@ begin
               end;
         end;
 
-        Controller_Usuario_Editar(StrToInt(EdtCodigo.Text),EdtUsuario.Text,EdtSenha.Text,1);
+       MUsuario:=TControllerUsuario.Create;
+       MUsuario.OUsuario.USU_CODIGO:=StrToInt(EdtCodigo.Text);
+       MUsuario.OUsuario.USU_USUARIO:=EdtUsuario.Text;
+       MUsuario.OUsuario.USU_SENHA:=EdtSenha.Text;
+       MUsuario.procEditarUsuario;
 
      end;
   end;
@@ -111,6 +129,13 @@ begin
   EdtUsuario.SetFocus;
   GbAlterarSenha.Enabled:=false;
   GbAlterarSenha.Visible:=false;
+end;
+
+procedure TView_FrmCadUsuario.FormShow(Sender: TObject);
+begin
+  inherited;
+  GBAba02.Enabled:=true;
+  GBAba03.Enabled:=true;
 end;
 
 end.

@@ -67,12 +67,21 @@ object View_FrmPrincipal: TView_FrmPrincipal
     end
     object mnuUtil: TMenuItem
       Caption = '&Util'
+      object mnuAlterarSenha: TMenuItem
+        Caption = 'Alterar Senha...'
+      end
       object mnuConfigSistema: TMenuItem
         Caption = 'Configura'#231#245'es do Sistema'
         object mnuLocalFotos: TMenuItem
           Caption = 'Local Fotos...'
           OnClick = mnuLocalFotosClick
         end
+      end
+    end
+    object mnuAuditoria: TMenuItem
+      Caption = 'A&uditoria'
+      object mnuLogSistema: TMenuItem
+        Caption = 'Log(s)...'
       end
     end
     object mnuSobre: TMenuItem
